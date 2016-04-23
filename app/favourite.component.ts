@@ -4,13 +4,8 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core'
 
 @Component({
     selector: 'favourite',
-    template: `
-            <i class='glyphicon'
-                [class.glyphicon-star]="isFavourite"
-                [class.glyphicon-star-empty]="!isFavourite"
-                (click)="onClick()">
-            </i>
-        `
+    // now importing template from html file.
+    templateUrl: 'app/favourite.template.html' 
 })
 
 export class FavouriteComponent {
