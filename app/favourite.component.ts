@@ -3,7 +3,7 @@
 import {Component} from 'angular2/core'
 
 @Component({
-    selector: 'favourite2',
+    selector: 'favourite',
     template: `
             <i class='glyphicon'
                 [class.glyphicon-star]="isFavourite"
@@ -13,6 +13,6 @@ import {Component} from 'angular2/core'
         `
 })
 
-export class Favourite2Component {
+export class FavouriteComponent {
     isFavourite: boolean = false;
 }
