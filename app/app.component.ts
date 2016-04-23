@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {FavouriteComponent} from './favourite.component';
 import {LikeComponent} from './like.component';
+import {VoteComponent} from './vote.component';
 
 @Component({
     selector: 'my-app',
@@ -15,8 +16,14 @@ import {LikeComponent} from './like.component';
             [initial-likes]="examplePost.likes"
             [start-liked]="examplePost.liked"
             (change)="onLikeChange($event)">
-        </like>`,
-    directives: [FavouriteComponent, LikeComponent]
+        </like>
+        <vote
+            [input-votes]="10"
+            [up-voted]="false"
+            [down-voted]="false"
+            (change)="onVoteChange($event)">
+        </vote>`,
+    directives: [FavouriteComponent, LikeComponent, VoteComponent]
 })
 
 export class AppComponent {
@@ -32,6 +39,10 @@ export class AppComponent {
     }
     
     onLikeChange($event) {
+        console.log($event);
+    }
+    
+    onVoteChange($event) {
         console.log($event);
     }
 }

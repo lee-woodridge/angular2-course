@@ -1,5 +1,3 @@
-// My second implementation of the task in Section 3 after hints.
-
 import {Component, Input, Output, EventEmitter} from 'angular2/core'
 
 @Component({
