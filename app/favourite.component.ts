@@ -1,6 +1,6 @@
 // My second implementation of the task in Section 3 after hints.
 
-import {Component} from 'angular2/core'
+import {Component, Input} from 'angular2/core'
 
 @Component({
     selector: 'favourite',
@@ -14,5 +14,7 @@ import {Component} from 'angular2/core'
 })
 
 export class FavouriteComponent {
-    isFavourite: boolean = false;
+    // Export the isFavourite variable as is-favourite.
+    // Can leave input argument blank to export as current name. 
+    @Input('is-favourite') isFavourite: boolean = false;
 }
