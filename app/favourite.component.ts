@@ -4,8 +4,22 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core'
 
 @Component({
     selector: 'favourite',
-    // now importing template from html file.
-    templateUrl: 'app/favourite.template.html' 
+    template: `
+        <i class='glyphicon'
+            [class.glyphicon-star]="isFavourite"
+            [class.glyphicon-star-empty]="!isFavourite"
+            (click)="onClick()">
+        </i>
+    `,
+    // Adding styles. This does not leak into other components!
+    // inline
+    styles: [`
+        .glyphicon-star {
+            color: orange;
+        }
+    `],
+    // external - creates another request
+    styleUrls: []
 })
 
 export class FavouriteComponent {
