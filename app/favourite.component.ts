@@ -1,4 +1,4 @@
-// My initial implementation of the task in Section 3.
+// My initial implementation of the task in Section 3 before hints.
 
 import {Component} from 'angular2/core'
 
