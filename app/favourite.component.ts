@@ -1,24 +1,18 @@
-// My initial implementation of the task in Section 3 before hints.
+// My second implementation of the task in Section 3 after hints.
 
 import {Component} from 'angular2/core'
 
 @Component({
-    selector: 'favourite',
+    selector: 'favourite2',
     template: `
-            <div (click)="onClick($event)">
-                {{ star }}
-            </div>
+            <i class='glyphicon'
+                [class.glyphicon-star]="isFavourite"
+                [class.glyphicon-star-empty]="!isFavourite"
+                (click)="isFavourite = !isFavourite">
+            </i>
         `
 })
 
-export class FavouriteComponent {
-    favourite: boolean = false;
-    star: string = "☆";
-    
-    onClick($event) {
-        console.log("got event");
-        this.favourite = !this.favourite;
-        console.log(this.favourite);
-        $event.target.textContent = this.favourite ? '★' : '☆';  
-    }
+export class Favourite2Component {
+    isFavourite: boolean = false;
 }
