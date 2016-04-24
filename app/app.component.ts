@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
 import {FavouriteComponent} from './favourite.component';
+import {BootstrapPanelComponent} from './bootstrap.panel.component';
 import {SummaryPipe} from './summary.pipe';
 
 @Component({
@@ -82,6 +83,8 @@ import {SummaryPipe} from './summary.pipe';
         <div>
             Printing a null object: {{ example.subExample?.title }}
         </div>
+
+        <bs-panel></bs-panel>
         `,
     directives: [FavouriteComponent],
     pipes: [SummaryPipe]
