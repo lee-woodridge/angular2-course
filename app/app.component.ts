@@ -45,6 +45,26 @@ import {Component} from 'angular2/core';
             </template>
         </ul>
         -->
+
+        <!-- Built in pipes. -->
+        <div>
+            {{ example.title | uppercase }}
+            <br/>
+            {{ example.rating | number }}
+            <br/>
+            <!-- number parameter: #integer values.#min dec-#max dec points. -->
+            {{ example.students | number:'2.2-2' }}
+            <br/>
+            <!-- currency, no param default to locale, symbol, then format -->
+            {{ example.price | currency:'GBP':true:'2.2-2' }}
+            <br/>
+            <!-- date with pre-defined format, or our own custom -->
+            {{ example.releaseDate | date:'shortDate' }}
+            <br/>
+            {{ example.releaseDate | date:'MMM yyyy' }}
+            <br/>
+            {{ example | json }}
+        </div>
         `,
     directives: []
 })
@@ -52,4 +72,11 @@ import {Component} from 'angular2/core';
 export class AppComponent {
     courses: string[] = ['Course 1', 'Course 2', 'Course 3'];
     viewMode;
+    example = {
+        title: "Course Name",
+        rating: 4.9745,
+        students: 5981,
+        price: 99.95,
+        releaseDate: new Date(2016, 3, 1)
+    }
 }
