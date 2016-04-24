@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {FavouriteComponent} from './favourite.component';
 import {LikeComponent} from './like.component';
 import {VoteComponent} from './vote.component';
+import {TweetComponent} from './tweet.component';
 
 @Component({
     selector: 'my-app',
@@ -22,8 +23,14 @@ import {VoteComponent} from './vote.component';
             [up-voted]="false"
             [down-voted]="false"
             (change)="onVoteChange($event)">
-        </vote>`,
-    directives: [FavouriteComponent, LikeComponent, VoteComponent]
+        </vote>
+        <h2>Tweet test</h2>
+        <div style="padding: 5px" *ngFor="#tweet of tweets">
+            <tweet [input]="tweet"></tweet>
+        </div>
+        `,
+    directives: [FavouriteComponent, LikeComponent,
+        VoteComponent, TweetComponent]
 })
 
 export class AppComponent {
@@ -33,6 +40,25 @@ export class AppComponent {
         likes: 10,
         liked: false
     }
+    
+    tweets = [
+        {
+            name: "Lee Woodridge",
+            username: "lee.woodridge",
+            imgUrl: "img/test.png",
+            tweet: "I did a thing.",
+            likes: 0,
+            liked: false
+        },
+        {
+            name: "Jennifer Wang",
+            username: "most.beautiful.girl",
+            imgUrl: "img/test2.png",
+            tweet: "I am sleeping on the couch zZz",
+            likes: 30,
+            liked: true
+        }
+    ]
     
     onFavouriteChange($event) {
         console.log($event);
