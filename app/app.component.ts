@@ -77,6 +77,11 @@ import {SummaryPipe} from './summary.pipe';
         </div>
 
         <favourite></favourite>
+
+        <!-- Elvis operator: so we can print something which may be null -->
+        <div>
+            Printing a null object: {{ example.subExample?.title }}
+        </div>
         `,
     directives: [FavouriteComponent],
     pipes: [SummaryPipe]
@@ -90,10 +95,12 @@ export class AppComponent {
         rating: 4.9745,
         students: 5981,
         price: 99.95,
-        releaseDate: new Date(2016, 3, 1)
+        releaseDate: new Date(2016, 3, 1),
+        subExample: null
     }
     post = {
         title: "Tutorial for beginners",
         body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam interdum tellus non nibh consequat, ut viverra libero blandit. Vivamus eget elit eu massa rhoncus accumsan. Integer pretium ut ipsum id mattis. Nunc accumsan posuere dolor nec efficitur. In sagittis risus in urna vehicula condimentum. Praesent enim ante, auctor a tempus eget, porttitor sed turpis. Morbi in nunc risus. Vestibulum at ante a tortor semper tincidunt. Aenean sed risus ut nibh pulvinar blandit."
     }
+
 }

@@ -9,6 +9,7 @@ import {Component} from 'angular2/core'
                 (click)="isFavourite = !isFavourite">
             </i> -->
 
+            <!-- New implementation with ngClass -->
             <i class='glyphicon'
                 [ngClass]="{
                     'glyphicon-star': !isFavourite,
@@ -16,6 +17,9 @@ import {Component} from 'angular2/core'
                 }"
                 (click)="isFavourite = !isFavourite">
             </i>
+
+            <!-- We can also use ngStyle in a similar way, although
+            needing to set multiple styles is normally a sign of using a css class -->
         `
 })
 
