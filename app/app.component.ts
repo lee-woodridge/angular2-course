@@ -1,4 +1,5 @@
 import {Component} from 'angular2/core';
+import {FavouriteComponent} from './favourite.component';
 import {SummaryPipe} from './summary.pipe';
 
 @Component({
@@ -74,8 +75,10 @@ import {SummaryPipe} from './summary.pipe';
             <br/>
             {{ post.body | summary:'10' }}
         </div>
+
+        <favourite></favourite>
         `,
-    directives: [],
+    directives: [FavouriteComponent],
     pipes: [SummaryPipe]
 })
 
