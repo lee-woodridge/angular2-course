@@ -84,9 +84,16 @@ import {SummaryPipe} from './summary.pipe';
             Printing a null object: {{ example.subExample?.title }}
         </div>
 
-        <bs-panel></bs-panel>
+        <br/>
+
+        <bs-panel>
+            <div class="heading">Header!</div>
+            <!-- Both of these match the selector, so both are placed in body -->
+            <div class="body">This is the body!</div>
+            <div class="body">This is another body!</div>
+        </bs-panel>
         `,
-    directives: [FavouriteComponent],
+    directives: [FavouriteComponent, BootstrapPanelComponent],
     pipes: [SummaryPipe]
 })
 
