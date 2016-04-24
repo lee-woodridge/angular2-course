@@ -1,4 +1,6 @@
 import {Component} from 'angular2/core';
+import {SummaryPipe} from './summary.pipe';
+
 @Component({
     selector: 'my-app',
     template: `
@@ -65,8 +67,16 @@ import {Component} from 'angular2/core';
             <br/>
             {{ example | json }}
         </div>
+
+        <!-- Custom pipes. -->
+        <div>
+            {{ post.title }}
+            <br/>
+            {{ post.body | summary:'10' }}
+        </div>
         `,
-    directives: []
+    directives: [],
+    pipes: [SummaryPipe]
 })
 
 export class AppComponent {
@@ -78,5 +88,9 @@ export class AppComponent {
         students: 5981,
         price: 99.95,
         releaseDate: new Date(2016, 3, 1)
+    }
+    post = {
+        title: "Tutorial for beginners",
+        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam interdum tellus non nibh consequat, ut viverra libero blandit. Vivamus eget elit eu massa rhoncus accumsan. Integer pretium ut ipsum id mattis. Nunc accumsan posuere dolor nec efficitur. In sagittis risus in urna vehicula condimentum. Praesent enim ante, auctor a tempus eget, porttitor sed turpis. Morbi in nunc risus. Vestibulum at ante a tortor semper tincidunt. Aenean sed risus ut nibh pulvinar blandit."
     }
 }
