@@ -1,6 +1,9 @@
 import {Component} from 'angular2/core';
+
 import {FavouriteComponent} from './favourite.component';
 import {BootstrapPanelComponent} from './bootstrap.panel.component';
+import {ZippyComponent} from './zippy.component';
+
 import {SummaryPipe} from './summary.pipe';
 
 @Component({
@@ -92,8 +95,12 @@ import {SummaryPipe} from './summary.pipe';
             <div class="body">This is the body!</div>
             <div class="body">This is another body!</div>
         </bs-panel>
+
+        <zippy title="Who do my updates go to?">
+            <div class="item">Friends</div>
+        </zippy>
         `,
-    directives: [FavouriteComponent, BootstrapPanelComponent],
+    directives: [FavouriteComponent, BootstrapPanelComponent, ZippyComponent],
     pipes: [SummaryPipe]
 })
 
