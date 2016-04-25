@@ -97,7 +97,7 @@ import {SummaryPipe} from './summary.pipe';
         </bs-panel>
 
         <zippy title="Who do my updates go to?">
-            <div class="item">Friends</div>
+            <div>Friends</div>
         </zippy>
         `,
     directives: [FavouriteComponent, BootstrapPanelComponent, ZippyComponent],

@@ -9,12 +9,16 @@ import {Component, Input} from 'angular2/core'
             <div class="panel-heading" (click)="onClick()">
                 {{ title }}
                 <i
-                    class="right glyphicon {{ icon }}">
+                    class="right glyphicon"
+                    [ngClass]="{
+                        'glyphicon-chevron-down': !open,
+                        'glyphicon-chevron-up': open
+                    }">
                 </i>
             </div>
             <ul class="list-group" *ngIf="open">
                 <li class="list-group-item">
-                    <ng-content select=".item"></ng-content>
+                    <ng-content></ng-content>
                 </li>
             </ul>
         </div>
@@ -32,11 +36,9 @@ import {Component, Input} from 'angular2/core'
 export class ZippyComponent {
     @Input() title: string = "";
     open: boolean = false;
-    icon: string = "glyphicon-chevron-down";
 
     onClick() {
         this.open = !this.open;
-        this.icon = this.open ? "glyphicon-chevron-up" : "glyphicon-chevron-down";
         console.log(this.open);
     }
 }
