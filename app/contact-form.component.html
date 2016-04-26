@@ -1,4 +1,4 @@
-<form>
+<form #f="ngForm" (ngSubmit)="onSubmit(f.form)">
     <div class="form-group">
         <!-- the labels for field must match the id of the input field,
         so when you click on the label, it highlights the input -->
@@ -7,11 +7,46 @@
         if we don't implement manually, it is done implicitly.
         # defines a local variable, ngForm is the ngControl for this input,
         then we print this by binding to change to inspect the value. -->
-        <input ngControl="firstName" #firstName="ngForm" (change)="log(firstName)" id="firstName" type="text" class="form-control">
+        <input ngControl="firstName"
+            #firstName="ngForm"
+            id="firstName"
+            type="text"
+            class="form-control"
+            required
+            minlength="3">
+        <!-- This div is for errors. Only shown when the ngControl
+        object says the input is not valid, and the field was touched. -->
+        <div *ngIf="firstName.touched && firstName.errors"> <!-- must check errors here to avoid null check below -->
+            <div class="alert alert-danger"
+                *ngIf="firstName.errors.required">
+                First name is required.
+            </div>
+            <div
+                *ngIf="firstName.errors.minlength"
+                class="alert alert-danger">
+                First name should be minimum {{ firstName.errors.minlength.requiredLength }} characters.
+            </div>
+        </div>
     </div>
     <div class="form-group">
         <label for="comment">Comment</label>
-        <textarea ngControl="comment" id="comment" cols="30" rows="10" class="form-control"></textarea>
+        <textarea
+            ngControl="comment"
+            #comment="ngForm"
+            id="comment"
+            cols="30" rows="10"
+            class="form-control"
+            required>
+        </textarea>
+        <div class="alert alert-danger"
+            *ngIf="!comment.valid && comment.touched"
+            >Comment is required.
+        </div>
     </div>
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="!f.valid">
+        Submit
+    </button>
 </form>
