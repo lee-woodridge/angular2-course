@@ -1,17 +1,12 @@
 import {Component} from 'angular2/core';
-
-import {ContactFormComponent} from './contact-form.component';
-import {SignupFormComponent} from './signup-form.component';
+import {SignUpFormComponent} from './signup-form.component'
 
 @Component({
     selector: 'my-app',
+    directives: [SignUpFormComponent],
     template: `
-            <contact-form></contact-form>
-            <signup-form></signup-form>
-        `,
-    directives: [ContactFormComponent, SignupFormComponent],
-    pipes: []
+        <signup-form></signup-form>
+    `
 })
-
 export class AppComponent {
 }
