@@ -1,11 +1,13 @@
 import {Component} from 'angular2/core';
 
+import {ContactFormComponent} from './contact-form.component';
+
 @Component({
     selector: 'my-app',
     template: `
-            Hello
+            <contact-form></contact-form>
         `,
-    directives: [],
+    directives: [ContactFormComponent],
     pipes: []
 })
 
