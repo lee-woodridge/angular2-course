@@ -16,19 +16,21 @@
             <div
                 class="alert alert-danger"
                 *ngIf="username.errors.required">
-                <!-- *ngIf="!form.controls['username'].valid" also works.-->
                 Username is required.
             </div>
             <div
                 class="alert alert-danger"
+                *ngIf="username.errors.invalidLogin">
+                Username or password is invalid.
+            </div>
+            <div
+                class="alert alert-danger"
                 *ngIf="username.errors.cannotContainSpace">
-                <!-- *ngIf="!form.controls['username'].valid" also works.-->
                 Username cannot contain spaces.
             </div>
             <div
                 class="alert alert-danger"
                 *ngIf="username.errors.shouldBeUnique">
-                <!-- *ngIf="!form.controls['username'].valid" also works.-->
                 That username is taken.
             </div>
         </div>

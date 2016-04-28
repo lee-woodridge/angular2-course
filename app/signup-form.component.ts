@@ -28,6 +28,12 @@ export class SignUpFormComponent {
     }
 
     signup() {
+        // imagine validating on server:
+        // var result = authService.login(this.form.value);
+        this.form.find('username').setErrors({
+           invalidLogin: true
+        });
+
         console.log(this.form.value);
     }
 }
