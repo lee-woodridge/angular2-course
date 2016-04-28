@@ -3,3 +3,7 @@
 node_modules
 app/*.js
 app/*.js.map
+
+rxDemo/node_modules
+rxDemo/app/*.js
+rxDemo/app/*.js.map
