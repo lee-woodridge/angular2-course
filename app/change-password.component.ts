@@ -1,3 +1,5 @@
+import {PasswordValidators} from './passwordValidators';
+
 import {Component} from 'angular2/core';
 import {Control, ControlGroup, Validators, FormBuilder} from 'angular2/common';
 
@@ -14,12 +16,15 @@ export class ChangePasswordComponent {
             current_password: ['', Validators.required],
             new_password: ['', Validators.compose([
                 Validators.required,
-                Validators.minLength(5),
+                PasswordValidators.complexityCheck
             ])],
             confirm_password: ['', Validators.compose([
                 Validators.required,
-                Validators.minLength(5)
+                PasswordValidators.complexityCheck
             ])]
+        },
+        {
+            validator: PasswordValidators.passwordsShouldMatch
         });
     }
 
