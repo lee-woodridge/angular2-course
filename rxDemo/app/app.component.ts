@@ -26,7 +26,7 @@ export class AppComponent {
             // In production, the code inside flatMap should be refactored into a service class.
 
         var subscription = keyups.subscribe(data => console.log(data));
-        subscription.unsubscribe();
+        // subscription.unsubscribe(); // to stop receiving events.
 
         // // Create a debouncer, so the max freq we call server is 400ms.
         // var debounced = _.debounce(function(text){
