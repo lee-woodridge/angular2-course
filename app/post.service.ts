@@ -1,6 +1,6 @@
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
-import {Observable} from 'rxjs/observable';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map'; // add map to Observable, as angular strips it.
 import {Post} from './post';
 
@@ -12,7 +12,6 @@ export class PostService {
 
     }
 
-    // CORS request.
     // getPostsCORS(): Observable<Post[]> {
     //     var headers = new Headers({
     //         "access-control-request-method": "POST"
