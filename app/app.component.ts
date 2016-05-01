@@ -3,6 +3,8 @@ import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {AlbumsComponent} from './albums.component';
 import {AlbumComponent} from './album.component';
+import {ArchivesComponent} from './archives.component';
+import {ArchiveComponent} from './archive.component';
 import {ContactComponent} from './contact.component';
 
 @RouteConfig([
@@ -19,10 +21,20 @@ import {ContactComponent} from './contact.component';
     // }
     // so /event/1 would drop into EventComponent route :id.
     {
+        path: '/archives',
+        name: 'Archives',
+        component: ArchivesComponent,
+        useAsDefault: true
+    },
+    {
+        path: '/archives/:year/:month',
+        name: 'Archive',
+        component: ArchiveComponent
+    },
+    {
         path: '/albums',
         name: 'Albums',
-        component: AlbumsComponent,
-        useAsDefault: true
+        component: AlbumsComponent
     },
     {
         path: '/albums/:id', // :id is route parameter
@@ -37,7 +49,7 @@ import {ContactComponent} from './contact.component';
     {
         path: '/*other', // wildcard route, with redirect
         name: 'Other',
-        redirectTo: ['Albums']
+        redirectTo: ['Archives']
     }
 ])
 @Component({
