@@ -1,12 +1,12 @@
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
-import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/map'; // add map to Observable, as angular strips it.
 
 @Injectable()
 export class PostService {
     private _url = "http://jsonplaceholder.typicode.com/posts";
 
-    constructor(private _http: Http) {
+    constructor(private _http: Http) { // Injected with Http. _ field for private.
 
     }
 

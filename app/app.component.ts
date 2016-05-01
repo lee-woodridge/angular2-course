@@ -13,9 +13,10 @@ import {HTTP_PROVIDERS} from 'angular2/http';
     providers: [PostService, HTTP_PROVIDERS]
 })
 export class AppComponent implements OnInit {
-    constructor(private _postService: PostService) {
+    constructor(private _postService: PostService) { // injected with PostService.
     }
 
+    // Implement OnInit, so this is run after constructor.
     ngOnInit() {
         this._postService.getPosts()
             .subscribe(posts => console.log(posts));
