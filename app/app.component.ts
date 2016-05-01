@@ -17,6 +17,7 @@ import {ContactComponent} from './contact.component';
     // {
     //     path: '/:id'
     // }
+    // so /event/1 would drop into EventComponent route :id.
     {
         path: '/albums',
         name: 'Albums',
@@ -34,7 +35,7 @@ import {ContactComponent} from './contact.component';
         component: ContactComponent
     },
     {
-        path: '/*other',
+        path: '/*other', // wildcard route, with redirect
         name: 'Other',
         redirectTo: ['Albums']
     }
