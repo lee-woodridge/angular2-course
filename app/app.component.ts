@@ -1,7 +1,8 @@
 import {Component} from 'angular2/core';
-import {RouteConfig, RouterOutlet} from 'angular2/router';
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {AlbumsComponent} from './albums.component';
+import {AlbumComponent} from './album.component';
 import {ContactComponent} from './contact.component';
 
 @RouteConfig([
@@ -10,6 +11,11 @@ import {ContactComponent} from './contact.component';
         name: 'Albums',
         component: AlbumsComponent,
         useAsDefault: true
+    },
+    {
+        path: '/albums/:id', // :id is route parameter
+        name: 'Album',
+        component: AlbumComponent
     },
     {
         path: '/contact',
@@ -25,7 +31,7 @@ import {ContactComponent} from './contact.component';
 @Component({
     selector: 'my-app',
     templateUrl: '/app/app.component.html',
-    directives: [RouterOutlet]
+    directives: [ROUTER_DIRECTIVES]
 })
 
 export class AppComponent {

@@ -1,5 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
 import {HTTP_PROVIDERS} from 'angular2/http';
+import {RouteParams} from 'angular2/router';
 import {PhotoService} from './photo.service';
 
 @Component({
@@ -14,15 +15,17 @@ import {PhotoService} from './photo.service';
     `,
     providers: [PhotoService, HTTP_PROVIDERS]
 })
+
 export class AlbumComponent implements OnInit {
     isLoading = true;
     photos;
 
-    constructor(private _photoService: PhotoService){
+    constructor(private _photoService: PhotoService,
+        private _routeParams: RouteParams) { // injecting RouteParams to get id passed in from routerLink.
     }
-    
+
     ngOnInit(){
-        this._photoService.getPhotos(1)
+        this._photoService.getPhotos(this._routeParams.get("id"))
             .subscribe(photos => {
                 this.isLoading = false;
                 this.photos = photos;
