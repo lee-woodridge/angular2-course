@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
+import {NavbarComponent} from './navbar.component';
 import {PostsComponent} from './posts.component';
 import {UsersComponent} from './users.component';
 
@@ -24,8 +25,11 @@ import {UsersComponent} from './users.component';
 ])
 @Component({
     selector: 'my-app',
-    templateUrl: '/app/app.component.html',
-    directives: [ROUTER_DIRECTIVES]
+    template: `
+        <navbar></navbar>
+        <router-outlet></router-outlet>
+    `,
+    directives: [NavbarComponent, ROUTER_DIRECTIVES]
 })
 
 export class AppComponent {
