@@ -6,6 +6,17 @@ import {AlbumComponent} from './album.component';
 import {ContactComponent} from './contact.component';
 
 @RouteConfig([
+    // These routes are all complete, but for using domain routing we
+    // could delegate a route by ending path with ..., for example:
+    // {
+    //     path: '/event/...',
+    //     component: EventComponent
+    // }
+    // would delegate anything after /event/ to EventComponent,
+    // which would contain a route like:
+    // {
+    //     path: '/:id'
+    // }
     {
         path: '/albums',
         name: 'Albums',
