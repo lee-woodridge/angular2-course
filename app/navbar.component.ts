@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
     selector: 'navbar',
@@ -8,4 +8,11 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 })
 
 export class NavbarComponent {
+    constructor(private _router: Router) {
+    }
+
+    isActive(route: string) {
+        var instruction = this._router.generate([route]);
+        return this._router.isRouteActive(instruction);
+    }
 }

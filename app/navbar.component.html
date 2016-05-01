@@ -16,8 +16,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <!-- routerLink takes array of route, then if route takes arguments, add those as extra array fields -->
-                <li><a [routerLink]="['Users']">Users</a></li>
-                <li><a [routerLink]="['Posts']">Posts</a></li>
+                <li [ngClass]="{active: isActive('Users')}">
+                    <a [routerLink]="['Users']">Users</a>
+                </li>
+                <li [ngClass]="{active: isActive('Posts')}">
+                    <a [routerLink]="['Posts']">Posts</a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
