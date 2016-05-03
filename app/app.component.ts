@@ -5,6 +5,7 @@ import {HomeComponent} from './home.component';
 import {NavbarComponent} from './navbar.component';
 import {PostsComponent} from './posts.component';
 import {UsersComponent} from './users.component';
+import {AddUserComponent} from './add-user.component';
 
 @RouteConfig([
     {
@@ -17,6 +18,11 @@ import {UsersComponent} from './users.component';
         path: '/users',
         name: 'Users',
         component: UsersComponent
+    },
+    {
+        path: '/users/new',
+        name: 'AddUser',
+        component: AddUserComponent
     },
     {
         path: '/posts',

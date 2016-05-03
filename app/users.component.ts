@@ -1,6 +1,7 @@
 import {Component, OnInit} from 'angular2/core';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
+import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {User} from './user';
 import {UsersService} from './users.service';
@@ -13,6 +14,14 @@ import {UsersService} from './users.service';
             <i class="fa fa-spinner fa-spin fa-3x"></i>
         </div>
         <div *ngIf="!isLoading" class="table-responsive">
+            <div>
+                <a
+                    [routerLink]="['AddUser']"
+                    class="btn btn-primary">
+                    Add User
+                </a>
+            </div>
+            <br/>
             <table class="table table-bordered">
                 <tr>
                     <th>Name</th>
@@ -29,7 +38,8 @@ import {UsersService} from './users.service';
             </table>
         </div>
     `,
-    providers: [UsersService, HTTP_PROVIDERS]
+    providers: [UsersService, HTTP_PROVIDERS],
+    directives: [ROUTER_DIRECTIVES]
 })
 
 export class UsersComponent implements OnInit {
