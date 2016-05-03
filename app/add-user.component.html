@@ -12,6 +12,13 @@
                 class="form-control"
                 #name="ngForm"
                 ngControl="name">
+            <div *ngIf="name.errors && name.touched">
+                <div
+                    class="alert alert-danger"
+                    *ngIf="name.errors.required">
+                    Name is required.
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <label>Email</label>
@@ -21,6 +28,13 @@
                 class="form-control"
                 #email="ngForm"
                 ngControl="email">
+            <div *ngIf="email.errors && email.touched">
+                <div
+                    class="alert alert-danger"
+                    *ngIf="email.errors.required">
+                    Email is required.
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <label>Phone</label>
@@ -32,7 +46,7 @@
                 ngControl="phone">
         </div>
     </fieldset>
-    <fieldset>
+    <fieldset ngControlGroup="address">
         <legend>Address</legend>
         <div class="form-group">
             <label>Street</label>
@@ -71,5 +85,10 @@
                 ngControl="zipcode">
         </div>
     </fieldset>
-    <button class="btn btn-primary" type="submit">Save</button>
+    <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="!form.valid">
+        Save
+    </button>
 </form>
