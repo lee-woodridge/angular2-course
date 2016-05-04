@@ -1,18 +1,23 @@
-import {Component} from 'angular2/core';
+import {Component, Injectable} from 'angular2/core';
 import {Control, ControlGroup, Validators, FormBuilder} from 'angular2/common';
-import {CanDeactivate} from 'angular2/router';
+import {Router, CanDeactivate} from 'angular2/router';
 
 import {EmailValidator} from './emailValidator';
+import {UsersService} from './users.service';
 
 @Component({
     selector: 'add-user',
-    templateUrl: './app/add-user.component.html'
+    templateUrl: './app/add-user.component.html',
+    providers: [UsersService]
 })
 
+@Injectable()
 export class AddUserComponent implements CanDeactivate {
     form: ControlGroup;
 
-    constructor(private _fb: FormBuilder) {
+    constructor(private _fb: FormBuilder,
+        private _usersService: UsersService,
+        private _router: Router) {
         this.form = _fb.group({
             name: ['', Validators.required],
             email: ['', Validators.compose([Validators.required, EmailValidator.emailCheck])],
@@ -27,7 +32,14 @@ export class AddUserComponent implements CanDeactivate {
     }
 
     submit() {
-        console.log(this.form);
+        this._usersService.addUser(this.form.value)
+            .subscribe(
+                res => console.log("res", res),
+                err => console.error(err),
+                () => {
+                    console.log("complete");
+                    this._router.navigate(['Users']);
+                });
     }
 
     routerCanDeactivate() {

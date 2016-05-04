@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {HTTP_PROVIDERS} from 'angular2/http';
+// import {HTTP_PROVIDERS} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
 
@@ -38,7 +38,7 @@ import {UsersService} from './users.service';
             </table>
         </div>
     `,
-    providers: [UsersService, HTTP_PROVIDERS],
+    providers: [UsersService],
     directives: [ROUTER_DIRECTIVES]
 })
 
