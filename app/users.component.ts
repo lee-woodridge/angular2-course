@@ -32,7 +32,11 @@ import {UsersService} from './users.service';
                 <tr *ngFor="#user of users">
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
-                    <td><i class="glyphicon glyphicon-edit"></i></td>
+                    <td>
+                        <a [routerLink]="['EditUser', {id: user.id}]">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
                     <td><i class="glyphicon glyphicon-remove"></i></td>
                 </tr>
             </table>

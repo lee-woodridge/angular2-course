@@ -6,6 +6,7 @@ import {NavbarComponent} from './navbar.component';
 import {PostsComponent} from './posts.component';
 import {UsersComponent} from './users.component';
 import {AddUserComponent} from './add-user.component';
+import {NotFoundComponent} from './not-found.component';
 
 @RouteConfig([
     {
@@ -20,9 +21,19 @@ import {AddUserComponent} from './add-user.component';
         component: UsersComponent
     },
     {
+        path: '/users/:id',
+        name: 'EditUser',
+        component: AddUserComponent
+    },
+    {
         path: '/users/new',
         name: 'AddUser',
         component: AddUserComponent
+    },
+    {
+        path: '/not-found',
+        name: 'NotFound',
+        component: NotFoundComponent
     },
     {
         path: '/posts',
