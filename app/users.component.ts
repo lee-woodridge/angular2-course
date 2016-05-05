@@ -1,5 +1,4 @@
 import {Component, OnInit} from 'angular2/core';
-// import {HTTP_PROVIDERS} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
 
@@ -37,7 +36,11 @@ import {UsersService} from './users.service';
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                     </td>
-                    <td><i class="glyphicon glyphicon-remove"></i></td>
+                    <td>
+                        <i (click)="deleteUser(user)"
+                            class="glyphicon glyphicon-remove clickable">
+                        </i>
+                    </td>
                 </tr>
             </table>
         </div>
@@ -61,5 +64,19 @@ export class UsersComponent implements OnInit {
                 this.users = users;
                 console.log(users);
             });
+    }
+
+    deleteUser(user: User) {
+        confirm('Are you sure?');
+        let i = this.users.indexOf(user);
+        this.users.splice(i, 1);
+        this._userService
+            .deleteUser(user)
+            .subscribe(res => console.log('delete success', res),
+                err => {
+                    this.users.splice(i, 0, user);
+                    alert('Delete failed!');
+                }
+            );
     }
 }

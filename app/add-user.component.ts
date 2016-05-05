@@ -66,14 +66,21 @@ export class AddUserComponent implements CanDeactivate, OnInit {
     }
 
     submit() {
-        this._usersService.addUser(this.form.value)
-            .subscribe(
-                res => console.log("res", res),
-                err => console.error(err),
-                () => {
-                    console.log("complete");
-                    this._router.navigate(['Users']);
-                });
+        if(this.id) {
+            this._usersService.editUser(this.user)
+                .subscribe(
+                    res => {
+                        console.log("updated: ", res);
+                        this._router.navigate(['Users']);
+                    });
+        } else {
+            this._usersService.addUser(this.form.value)
+                .subscribe(
+                    res => {
+                        console.log("created: ", res);
+                        this._router.navigate(['Users']);
+                    });
+        }
     }
 
     routerCanDeactivate() {
