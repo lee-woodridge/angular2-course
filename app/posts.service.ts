@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import {Post} from './post';
+import {Comment} from './comment';
 
 @Injectable()
 export class PostsService {
@@ -14,6 +15,16 @@ export class PostsService {
 
     getPosts() : Observable<Post[]> {
         return this._http.get(this._url).map(res => res.json());
+    }
+
+    getCommentsForPost(post: Post) : Observable<Comment[]> {
+        return this._http
+            .get(this.getCommentUrl(post))
+            .map(res => res.json());
+    }
+
+    getCommentUrl(post: Post) : string {
+        return this._url + "/" + post.id + "/" + "comments"
     }
 
     // getUser(id: number) : Observable<User> {
