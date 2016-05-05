@@ -2,6 +2,7 @@ import {Component, OnInit} from 'angular2/core';
 import {Observable} from 'rxjs/Observable';
 import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
 
+import {SpinnerComponent} from './spinner.component';
 import {User} from './user';
 import {UsersService} from './users.service';
 
@@ -9,9 +10,7 @@ import {UsersService} from './users.service';
     selector: 'users',
     template: `
         <h1>Users</h1>
-        <div *ngIf="isLoading">
-            <i class="fa fa-spinner fa-spin fa-3x"></i>
-        </div>
+        <spinner [visible]="isLoading"></spinner>
         <div *ngIf="!isLoading" class="table-responsive">
             <div>
                 <a
@@ -46,7 +45,7 @@ import {UsersService} from './users.service';
         </div>
     `,
     providers: [UsersService],
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES, SpinnerComponent]
 })
 
 export class UsersComponent implements OnInit {
