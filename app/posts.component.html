@@ -14,10 +14,16 @@
             </option>
         </select>
         <br/>
+        <pager
+            [hidden]="filtered"
+            [numPages]="numPages"
+            (page-change)="changePage($event)">
+        </pager>
+        <br/>
         <spinner [visible]="(init&&postsLoading)"></spinner>
         <ul *ngIf="!postsLoading" class="list-group">
             <li
-                *ngFor="#post of posts"
+                *ngFor="#post of currentPosts"
                 class="list-group-item post-master"
                 (click)="selectPost(post)"
                 [class.active]="currentPost==post">

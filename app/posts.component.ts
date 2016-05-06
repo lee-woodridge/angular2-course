@@ -9,6 +9,7 @@ import {User} from './user';
 import {UsersService} from './users.service';
 // Components.
 import {SpinnerComponent} from './spinner.component';
+import {PaginationComponent} from './pager.component';
 
 @Component({
     selector: 'posts',
@@ -33,18 +34,21 @@ import {SpinnerComponent} from './spinner.component';
         }
     `],
     providers: [PostsService, UsersService],
-    directives: [SpinnerComponent]
+    directives: [SpinnerComponent, PaginationComponent]
 })
 
 export class PostsComponent {
     postsLoading: boolean = true;
     posts: Post[];
+    currentPosts: Post[];
+    numPages: number = 10;
     usersLoading: boolean = true;
     users: User[];
     currentPost: Post;
     comments: Comment[];
     commentsLoading: boolean = true;
     init: boolean = false;
+    filtered: boolean = false;
 
     constructor(private _postService: PostsService,
         private _userService: UsersService) {
@@ -65,19 +69,23 @@ export class PostsComponent {
     getPosts(id?) {
         this.postsLoading = true;
         if(id) {
+            this.filtered = true;
             this._postService
                 .getPostsForUser(id)
                 .subscribe(posts => {
                     this.postsLoading = false;
                     this.posts = posts;
+                    this.currentPosts = posts.slice(0,10);
                     console.log(posts);
                 });
         } else {
+            this.filtered = false;
             this._postService
                 .getPosts()
                 .subscribe(posts => {
                     this.postsLoading = false;
                     this.posts = posts;
+                    this.currentPosts = posts;
                     console.log(posts);
                 });
         }
@@ -100,5 +108,11 @@ export class PostsComponent {
         } else {
             this.getPosts(id);
         }
+    }
+
+    changePage(event: number) {
+        event = event - 1;
+        console.log(event);
+        this.currentPosts = this.posts.slice(0+(10*event), 10+(10*event));
     }
 }
