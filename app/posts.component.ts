@@ -1,52 +1,18 @@
 import {Component, OnInit} from 'angular2/core';
 
+// Post imports.
 import {Post} from './post';
 import {Comment} from './comment';
 import {PostsService} from './posts.service';
+// User imports.
+import {User} from './user';
+import {UsersService} from './users.service';
+// Components.
 import {SpinnerComponent} from './spinner.component';
 
 @Component({
     selector: 'posts',
-    template: `
-        <h1>Posts</h1>
-        <spinner [visible]="isLoading"></spinner>
-        <div *ngIf="!isLoading" class="row">
-            <div class="col-md-6">
-                <ul class="list-group">
-                    <li
-                        *ngFor="#post of posts"
-                        class="list-group-item post-master"
-                        (click)="selectPost(post)"
-                        [class.active]="currentPost==post">
-                        {{ post.title }}
-                    </li>
-                </ul>
-            </div>
-            <div *ngIf="currentPost" class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">{{ currentPost?.title }}</div>
-                    <div class="panel-body">
-                        {{ currentPost?.body }}
-                        <hr/>
-                        <spinner [visible]="isLoadingComments"></spinner>
-                        <div class="media" *ngFor="#comment of comments">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object thumbnail" src="http://lorempixel.com/80/80/people?random={{ comment.id }}" alt="...">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    {{ comment.name }}
-                                </h4>
-                                {{ comment.body }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `,
+    templateUrl: './app/posts.component.html',
     styles: [`
         .post-master {
             cursor: pointer;
@@ -66,37 +32,73 @@ import {SpinnerComponent} from './spinner.component';
             border-radius: 100%;
         }
     `],
-    providers: [PostsService],
+    providers: [PostsService, UsersService],
     directives: [SpinnerComponent]
 })
 
 export class PostsComponent {
-    isLoading: boolean = true;
+    postsLoading: boolean = true;
     posts: Post[];
+    usersLoading: boolean = true;
+    users: User[];
     currentPost: Post;
     comments: Comment[];
-    isLoadingComments: boolean = true;
+    commentsLoading: boolean = true;
+    init: boolean = false;
 
-    constructor(private _postService: PostsService) {
+    constructor(private _postService: PostsService,
+        private _userService: UsersService) {
     }
 
     ngOnInit() {
-        this._postService
-            .getPosts()
-            .subscribe(posts => {
-                this.isLoading = false;
-                this.posts = posts;
-                console.log(posts);
+        this.getPosts();
+        this._userService
+            .getUsers()
+            .subscribe(users => {
+                this.usersLoading = false;
+                this.users = users;
+                this.init = true;
+                console.log(users);
             });
     }
 
+    getPosts(id?) {
+        this.postsLoading = true;
+        if(id) {
+            this._postService
+                .getPostsForUser(id)
+                .subscribe(posts => {
+                    this.postsLoading = false;
+                    this.posts = posts;
+                    console.log(posts);
+                });
+        } else {
+            this._postService
+                .getPosts()
+                .subscribe(posts => {
+                    this.postsLoading = false;
+                    this.posts = posts;
+                    console.log(posts);
+                });
+        }
+    }
+
     selectPost(post: Post) {
-        this.isLoadingComments = true;
+        this.comments = null;
+        this.commentsLoading = true;
         this.currentPost = post;
         this._postService.getCommentsForPost(post)
             .subscribe(comments => {
                 this.comments = comments;
-                this.isLoadingComments = false;
+                this.commentsLoading = false;
             })
+    }
+
+    form(id: string) {
+        if(id == "") {
+            this.getPosts();
+        } else {
+            this.getPosts(id);
+        }
     }
 }

@@ -17,6 +17,12 @@ export class PostsService {
         return this._http.get(this._url).map(res => res.json());
     }
 
+    getPostsForUser(id) : Observable<Post[]> {
+        return this._http
+            .get(this._url + "?userId=" + id)
+            .map(res => res.json());
+    }
+
     getCommentsForPost(post: Post) : Observable<Comment[]> {
         return this._http
             .get(this.getCommentUrl(post))
