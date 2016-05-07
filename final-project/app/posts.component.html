@@ -1,0 +1,57 @@
+<h1>Posts</h1>
+<spinner [visible]="(postsLoading&&usersLoading)"></spinner>
+<div class="row">
+    <div class="col-md-6">
+        <select
+            *ngIf="!usersLoading"
+            class="form-control"
+            #u (change)="form(u.value)">
+            <option value="">Select User</option>
+            <option
+                *ngFor="#user of users"
+                value="{{ user.id }}">
+                {{ user.name }}
+            </option>
+        </select>
+        <br/>
+        <pager
+            [hidden]="filtered"
+            [numPages]="numPages"
+            (page-change)="changePage($event)">
+        </pager>
+        <br/>
+        <spinner [visible]="(init&&postsLoading)"></spinner>
+        <ul *ngIf="!postsLoading" class="list-group">
+            <li
+                *ngFor="#post of currentPosts"
+                class="list-group-item post-master"
+                (click)="selectPost(post)"
+                [class.active]="currentPost==post">
+                {{ post.title }}
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="currentPost" class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{ currentPost?.title }}</div>
+            <div class="panel-body">
+                {{ currentPost?.body }}
+                <hr/>
+                <spinner [visible]="commentsLoading"></spinner>
+                <div class="media" *ngFor="#comment of comments">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object thumbnail" src="http://lorempixel.com/80/80/people?random={{ comment.id }}" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            {{ comment.name }}
+                        </h4>
+                        {{ comment.body }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

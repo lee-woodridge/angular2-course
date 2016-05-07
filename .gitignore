@@ -3,3 +3,7 @@
 section*/node_modules
 section*/app/*.js
 section*/app/*.js.map
+
+final-project/app/*.js
+final-project/app/*.js.map
+final-project/node_modules
