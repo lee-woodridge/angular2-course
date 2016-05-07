@@ -1,5 +1,5 @@
 .DS_Store
 
-node_modules
-app/*.js
-app/*.js.map
+section*/node_modules
+section*/app/*.js
+section*/app/*.js.map
